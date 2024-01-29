@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LocationsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers'], function(){
+    Route::apiResource('users', UserController::class);
+});
+
+Route::group(['prefix' => 'location', 'namespace' => 'App\Http\Controllers'], function(){
+    Route::apiResource('locations', LocationsController::class);
 });

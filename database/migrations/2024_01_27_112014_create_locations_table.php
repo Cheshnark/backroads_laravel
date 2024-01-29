@@ -14,18 +14,18 @@ return new class extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('coordinates');
             $table->string('title');
             $table->string('body')->nullable();
             $table->string('location_type');
             $table->string('address');
-            $table->array_chunk('services')->nullable();
-            $table->float('price')->nullable();
-            $table->string('opeing_hours')->nullable();
+            $table->json('services')->nullable();
+            $table->double('price')->nullable();
+            $table->string('opening_hours')->nullable();
             $table->float('score')->nullable();
-            $table->array('comments')->nullable();
-            $table->array('images')->nullable();
+            $table->json('comments')->nullable();
+            $table->json('images')->nullable();
         });
     }
 

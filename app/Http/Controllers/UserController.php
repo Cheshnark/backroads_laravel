@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Location;
-use App\Http\Requests\StoreLocationsRequest;
+use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateLocationsRequest;
-use App\Http\Resources\LocationCollection;
-use App\Filters\LocationFilter;
-use App\Http\Resources\LocationResource;
+use App\Http\Resources\UserCollection;
+use App\Filters\UserFilter;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 
-class LocationsController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $filter = new LocationFilter();
-        $queryItems = $filter->transform($request);
-        $location = Location::where($queryItems);
-        return new LocationCollection($location->paginate()->appends($request->query()));
+      $filter = new UserFilter();
+      $queryItems = $filter->transform($request);
+      $user = User::where($queryItems);
+      return new UserCollection($user->paginate()->appends($request->query()));
     }
 
     /**
@@ -34,7 +34,7 @@ class LocationsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLocationsRequest $request)
+    public function store(StoreUserRequest $request)
     {
         //
     }
@@ -42,15 +42,15 @@ class LocationsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Location $location)
+    public function show(User $user)
     {
-        return new LocationResource($location);
+        return new UserResource($user);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Location $location)
+    public function edit(User $user)
     {
         //
     }
@@ -58,7 +58,7 @@ class LocationsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLocationsRequest $request, Location $location)
+    public function update(UpdateLocationsRequest $request, User $user)
     {
         //
     }
@@ -66,7 +66,7 @@ class LocationsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Location $location)
+    public function destroy(User $user)
     {
         //
     }
