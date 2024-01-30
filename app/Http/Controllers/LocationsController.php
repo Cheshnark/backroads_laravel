@@ -36,7 +36,7 @@ class LocationsController extends Controller
      */
     public function store(StoreLocationsRequest $request)
     {
-        //
+        return new LocationResource(Location::create($request->all()));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Location>
@@ -16,6 +17,7 @@ class LocationFactory extends Factory
    */
   public function definition(): array
   {
+    $userId = User::inRandomOrder()->first()->id;
     $commentsArray = array(
       array (
           "user" => 'Jambo',
@@ -43,7 +45,7 @@ class LocationFactory extends Factory
       $servicesJson = json_encode(['water'=>true, 'electricity'=>false]);
 
       return [
-          'user_id' => $this->faker->randomNumber(8),
+          'user_id' => $userId,
           'coordinates' => '158.58.95 - 35-95-148',
           'title' => $this->faker->words(2, true),
           'body' => $this->faker->realText(200, 2),

@@ -28,9 +28,7 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
-            'profile_img' => 'https://images.pexels.com/photos/4663107/pexels-photo-4663107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            'description' => $this->faker->realText(200, 2)
+            'remember_token' => Str::random(10)
         ];
     }
 

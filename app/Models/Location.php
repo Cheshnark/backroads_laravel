@@ -9,7 +9,15 @@ class Location extends Model
 {
     use HasFactory;
     protected $fillable = [
-
+        'coordinates',
+        'title',
+        'body',
+        'location_type',
+        'address',
+        'services',
+        'price',
+        'opening_hours',
+        'images'
     ];
 
     /**
