@@ -24,5 +24,4 @@ class LocationFilter extends ApiFilter {
     'gt' => '>',
     'gte' => '>='
   ];
-
 }

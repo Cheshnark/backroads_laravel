@@ -11,7 +11,7 @@ class UpdateLocationsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,36 @@ class UpdateLocationsRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method  == 'PUT') {
+            return [
+                'coordinates' => ['required'],
+                'title' => ['required'],
+                'body' => ['required'],
+                'location_type' => ['required'],
+                'address' => ['required'],
+                'services' => ['required'],
+                'price' => ['required'],
+                'opening_hours' => ['required'],
+                'score' => ['required'],
+                'comments' => ['required'],
+                'images' => ['required'],
+            ];
+            // PATCH request
+        } else {
+            return [
+                'coordinates' => ['sometimes'],
+                'title' => ['sometimes'],
+                'body' => ['sometimes'],
+                'location_type' => ['sometimes'],
+                'address' => ['sometimes'],
+                'services' => ['sometimes'],
+                'price' => ['sometimes'],
+                'opening_hours' => ['sometimes'],
+                'score' => ['sometimes'],
+                'comments' => ['sometimes'],
+                'images' => ['sometimes'],
+            ];
+        }
     }
 }

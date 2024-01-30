@@ -17,10 +17,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-      $filter = new UserFilter();
-      $queryItems = $filter->transform($request);
-      $user = User::where($queryItems);
-      return new UserCollection($user->paginate()->appends($request->query()));
+        $filter = new UserFilter();
+        $queryItems = $filter->transform($request);
+        $user = User::where($queryItems);
+        return new UserCollection($user->paginate()->appends($request->query()));
     }
 
     /**
@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        return new UserResource(User::create($request->all()));
     }
 
     /**
@@ -60,7 +60,7 @@ class UserController extends Controller
      */
     public function update(UpdateLocationsRequest $request, User $user)
     {
-        //
+        $user->update($request->all());
     }
 
     /**

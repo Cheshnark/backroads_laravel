@@ -11,7 +11,7 @@ class StoreLocationsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class StoreLocationsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'coordinates' => ['required'],
+            'title' => ['required'],
+            'body',
+            'location_type' => ['required'],
+            'address' => ['required'],
+            'services',
+            'price',
+            'opening_hours',
+            'images'
         ];
     }
 }
