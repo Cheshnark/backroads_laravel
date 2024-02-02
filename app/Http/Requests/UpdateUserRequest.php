@@ -24,18 +24,12 @@ class UpdateLocationsRequest extends FormRequest
       $method = $this->method();
       if ($method  == 'PUT') {
         return [
-          'name' => ['required'],
-          'email' => ['required', 'email'],
-          'profile_img' => ['required'],
-          'description' => ['required']
+          'email' => ['required', 'email']
         ];
       // PATCH request
       } else {
         return [
-          'name' => ['sometimes'],
-          'email' => ['sometimes', 'email'],
-          'profile_img' => ['sometimes'],
-          'description' => ['sometimes']
+          'email' => ['sometimes', 'email']
         ];
       }
     }

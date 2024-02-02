@@ -22,15 +22,25 @@ class StoreLocationsRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'userId' => ['required'],
             'coordinates' => ['required'],
             'title' => ['required'],
             'body',
-            'location_type' => ['required'],
+            'locationType' => ['required'],
             'address' => ['required'],
             'services',
             'price',
-            'opening_hours',
+            'openingHours',
             'images'
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id' => $this->userId,
+            'location_type' => $this-> locationType,
+            'opening_hours' => $this-> openingHours
+        ]);
     }
 }

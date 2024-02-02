@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ProfileFilter;
 use App\Models\Profile;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Resources\ProfileCollection;
+use App\Http\Resources\ProfileResource;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filter = new ProfileFilter();
+        $queryItems = $filter->transform($request);
+        $location = Profile::where($queryItems);
+        return new ProfileCollection($location->paginate()->appends($request->query()));
     }
 
     /**
@@ -29,7 +36,7 @@ class ProfileController extends Controller
      */
     public function store(StoreProfileRequest $request)
     {
-        //
+        return new ProfileResource(Profile::create($request->all()));
     }
 
     /**

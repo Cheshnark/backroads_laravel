@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
     protected $fillable = [
+        'user_id',
         'coordinates',
         'title',
         'body',
@@ -17,7 +19,14 @@ class Location extends Model
         'services',
         'price',
         'opening_hours',
+        'comments',
         'images'
+    ];
+
+    protected $casts = [
+        'services' => 'array',
+        'comments' => 'array',
+        'images' => 'array'
     ];
 
     /**
@@ -27,6 +36,6 @@ class Location extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'foreign_key', 'other_key');
+        return $this->belongsTo(User::class, 'foreign_key');
     }
 }

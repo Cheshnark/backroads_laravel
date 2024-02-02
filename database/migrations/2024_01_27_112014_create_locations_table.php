@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('locations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->uuid()->primary()->nullable();
             $table->timestamps();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
             $table->string('coordinates');
             $table->string('title');
             $table->string('body')->nullable();

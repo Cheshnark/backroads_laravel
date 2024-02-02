@@ -15,7 +15,6 @@ class LocationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
             'userId' => $this->user_id,
             'coordinates' => $this->coordinates,
             'title' => $this->title,

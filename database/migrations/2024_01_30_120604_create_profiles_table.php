@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->uuid()->primary()->nullable();
             $table->timestamps();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('name')->references('name')->on('users');
-            $table->foreign('email')->references('email')->on('users');
+            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
+            $table->string('name');
+            $table->string('email')->references('email')->on('users');
             $table->string('profile_img')->nullable();
             $table->string('description')->nullable();
         });
