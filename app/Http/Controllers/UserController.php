@@ -9,6 +9,7 @@ use App\Http\Resources\UserCollection;
 use App\Filters\UserFilter;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -61,6 +62,17 @@ class UserController extends Controller
     public function update(UpdateLocationsRequest $request, User $user)
     {
         $user->update($request->all());
+
+        if($request->email) {
+            DB::table('profiles')->update(['name' => $request->name, 'email' => $request->email]);
+        } else {
+            DB::table('profiles')->update(['name' => $request->name]);
+        }
+
+        return response()->json([
+            'message' => 'User updated successfully',
+            'data' => new UserResource($user),
+        ]);
     }
 
     /**

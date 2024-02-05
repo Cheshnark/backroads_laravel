@@ -9,6 +9,7 @@ use App\Http\Resources\LocationCollection;
 use App\Filters\LocationFilter;
 use App\Http\Resources\LocationResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LocationsController extends Controller
 {
@@ -60,7 +61,30 @@ class LocationsController extends Controller
      */
     public function update(UpdateLocationsRequest $request, Location $location)
     {
-        //
+        // Add score, comment or image to its array. Maybe add an id for item to delete?
+        // $images = ;
+        // $score = ;        
+        // $comments = ;
+
+        DB::table('locations')->update([
+            'coordinates' => $request->coordinates,
+            'title' => $request->title,
+            'body' => $request->body,
+            'location_type' => $request->locationType,
+            'address' => $request->address,
+            'services' => $request->services,
+            'price' => $request->price,
+            'opening_hours' => $request->openingHours,
+            'images' => $request->images,
+            'score' => $request->score,
+            'comments' => $request->comments
+
+        ]);
+
+        return response()->json([
+            'message' => 'User updated successfully',
+            'data' => new LocationResource($location),
+        ]);
     }
 
     /**

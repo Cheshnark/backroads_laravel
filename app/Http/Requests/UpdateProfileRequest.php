@@ -11,7 +11,7 @@ class UpdateProfileRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,10 +19,21 @@ class UpdateProfileRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method  == 'PUT') {
+            return [
+                'profile_img' => ['required'],
+                'description' => ['required']
+            ];
+        // PATCH request
+        } else {
+            return [
+                'profile_img' => ['sometimes'],
+                'description' => ['sometimes']
+            ];
+        }
     }
 }

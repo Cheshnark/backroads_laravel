@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -22,6 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'password',
+        'name',
         'email_verified_at',
         'password'
     ];
@@ -49,14 +51,7 @@ class User extends Authenticatable
     protected static function booted()
     {
         static::created(function ($user) {
-            // $user->profile()->create([
-            //     'email' => $user->email,
-            //     'user_id' => $user->id
-            // ]);
-            // Profile::insert([
-            //     'email' => $user->email,
-            //     'user_id' => $user->id
-            // ]);
+            DB::table('profiles')->insert(['id' => uuid_create(), 'name' => $user->name, 'user_id' => $user->id, 'email' => $user->email, 'created_at' => $user->created_at, 'updated_at' => $user->updated_at]);
         });
     }
 

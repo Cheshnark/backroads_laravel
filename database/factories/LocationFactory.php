@@ -45,7 +45,7 @@ class LocationFactory extends Factory
 
       return [
           'id' => uuid_create(),
-          'user_id' => '9b3d2133-84e1-4133-9026-00063c518e44',
+          'user_id' => '9b431405-c94a-4e65-a6f3-dcca1ea1e57d',
           'coordinates' => '158.58.95 - 35-95-148',
           'title' => $this->faker->words(2, true),
           'body' => $this->faker->realText(200, 2),

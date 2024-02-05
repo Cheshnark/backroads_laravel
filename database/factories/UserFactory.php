@@ -27,6 +27,7 @@ class UserFactory extends Factory
             'id' => uuid_create(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'name'=> $this->faker->name(),
             'remember_token' => Str::random(10)
         ];
     }

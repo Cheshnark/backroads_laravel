@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Resources\ProfileCollection;
 use App\Http\Resources\ProfileResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -60,7 +61,12 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfileRequest $request, Profile $profile)
     {
-        //
+        DB::table('profiles')->update(['profile_img' => $request->profileImg, 'description' => $request->description]);
+
+        return response()->json([
+            'message' => 'User updated successfully',
+            'data' => new ProfileResource($profile),
+        ]);
     }
 
     /**

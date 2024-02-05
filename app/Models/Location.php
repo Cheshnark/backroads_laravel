@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
+    // uuid se define aquí, no hay que hacer nada más. Ya se añade solo. 
     use HasFactory, HasUuids;
     protected $fillable = [
         'user_id',
@@ -23,6 +24,7 @@ class Location extends Model
         'images'
     ];
 
+    // With this we are telling PHP gods to read those properties as arrays.
     protected $casts = [
         'services' => 'array',
         'comments' => 'array',

@@ -15,11 +15,11 @@ return new class extends Migration
             $table->uuid('id')->uuid()->primary()->nullable();
             $table->timestamps();
             $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
-            $table->string('coordinates');
+            $table->string('coordinates')->nullable();
             $table->string('title');
             $table->string('body')->nullable();
-            $table->string('location_type');
-            $table->string('address');
+            $table->string('location_type')->nullable();
+            $table->string('address')->nullable();
             $table->json('services')->nullable();
             $table->double('price')->nullable();
             $table->string('opening_hours')->nullable();

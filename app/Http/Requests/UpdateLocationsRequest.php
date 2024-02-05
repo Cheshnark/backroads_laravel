@@ -36,7 +36,7 @@ class UpdateLocationsRequest extends FormRequest
                 'comments' => ['required'],
                 'images' => ['required'],
             ];
-            // PATCH request
+        // PATCH request
         } else {
             return [
                 'coordinates' => ['sometimes'],
