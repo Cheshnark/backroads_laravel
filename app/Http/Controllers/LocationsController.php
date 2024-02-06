@@ -66,7 +66,7 @@ class LocationsController extends Controller
         // $score = ;        
         // $comments = ;
 
-        DB::table('locations')->update([
+        $requestArray = [
             'coordinates' => $request->coordinates,
             'title' => $request->title,
             'body' => $request->body,
@@ -78,12 +78,16 @@ class LocationsController extends Controller
             'images' => $request->images,
             'score' => $request->score,
             'comments' => $request->comments
+        ];    
 
-        ]);
+        $updateArray = array_filter($requestArray);
+
+        DB::table('locations')->update($updateArray);
 
         return response()->json([
             'message' => 'User updated successfully',
-            'data' => new LocationResource($location),
+            'data' => new LocationResource($location)
+            // 'data' => $updateArray
         ]);
     }
 

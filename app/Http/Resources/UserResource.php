@@ -16,7 +16,17 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'email' => $this->email
+            'type' => 'User',
+            'attributes' => [
+                'id' => $this->id,
+                'name' => $this->name,
+                'email' => $this->email
+            ]
+            
         ];
+    }
+
+    public function with (Request $request) {
+        return ['jsonapi' => ['version' => '1.0']];
     }
 }
