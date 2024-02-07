@@ -87,7 +87,6 @@ class LocationsController extends Controller
         return response()->json([
             'message' => 'User updated successfully',
             'data' => new LocationResource($location)
-            // 'data' => $updateArray
         ]);
     }
 
