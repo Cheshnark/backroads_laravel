@@ -9,7 +9,12 @@ class ProfileFilter extends ApiFilter {
     'name' => ['eq'],
     'email' => ['eq'],
     'profileImg' => ['eq'],
-    'description' => ['eq']
+    'description' => ['eq'],
+    'website' => ['eq'],
+    'facebook' => ['eq'],
+    'instagram' => ['eq'],
+    'twitter' => ['eq'],
+    'youtube' => ['eq']
   ];
   protected $columnMap = [
     'userId' => 'user_id',
