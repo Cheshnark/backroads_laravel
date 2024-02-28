@@ -26,13 +26,23 @@ class UpdateProfileRequest extends FormRequest
         if ($method  == 'PUT') {
             return [
                 'profile_img' => ['required'],
-                'description' => ['required']
+                'description' => ['required'],
+                'website' => ['required'],
+                'facebook' => ['required'],
+                'instagram' => ['required'],
+                'twitter' => ['required'],
+                'youtube' => ['required']
             ];
-        // PATCH request
+            // PATCH request
         } else {
             return [
                 'profile_img' => ['sometimes'],
-                'description' => ['sometimes']
+                'description' => ['sometimes'],
+                'website' => ['sometimes'],
+                'facebook' => ['sometimes'],
+                'instagram' => ['sometimes'],
+                'twitter' => ['sometimes'],
+                'youtube' => ['sometimes']
             ];
         }
     }

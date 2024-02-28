@@ -8,6 +8,8 @@ use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Resources\ProfileCollection;
 use App\Http\Resources\ProfileResource;
+use App\Http\Responses\ApiResponse;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -43,9 +45,14 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Profile $profile)
+    public function show($id)
     {
-        //
+        try {
+            $profile = Profile::findOrFail($id);
+            return ApiResponse::success('Profile obtained', 200, $profile);
+        } catch (ModelNotFoundException $e) {
+            return ApiResponse::error('Profile not found: '.$e->getMessage(), 422);
+        }
     }
 
     /**
