@@ -45,10 +45,10 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($userId)
     {
         try {
-            $profile = Profile::findOrFail($id);
+            $profile = Profile::where('user_id', $userId)->firstOrFail();
             return ApiResponse::success('Profile obtained', 200, $profile);
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Profile not found: '.$e->getMessage(), 422);
