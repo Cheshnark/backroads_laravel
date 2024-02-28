@@ -26,6 +26,7 @@ class Location extends Model
 
     // With this we are telling PHP gods to read those properties as arrays.
     protected $casts = [
+        'coordinates' => 'array',
         'services' => 'array',
         'comments' => 'array',
         'images' => 'array'
