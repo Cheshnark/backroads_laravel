@@ -97,4 +97,11 @@ class LocationsController extends Controller
     {
         //
     }
+
+    public function getUserLocations(string $userId)
+    {
+        $locations = Location::where('user_id', $userId)->get();
+
+        return response()->json($locations);
+    }
 }

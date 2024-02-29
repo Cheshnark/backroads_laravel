@@ -68,7 +68,7 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfileRequest $request, Profile $profile)
     {
-        DB::table('profiles')->update(['profile_img' => $request->profileImg, 'description' => $request->description]);
+        DB::table('profiles')->update(['profile_img' => $request->profileImg, 'description' => $request->description, 'website' => $request->website, 'facebook' => $request->facebook, 'instagram' => $request->instagram, 'twitter' => $request->twitter, 'youtube' => $request->youtube]);
 
         return response()->json([
             'message' => 'User updated successfully',

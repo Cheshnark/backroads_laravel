@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('register', [LoginController::class, 'register'])->name('register');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/locations/{userId}/locations', [LocationsController::class, 'getUserLocations']);
 
 Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers'], function(){
     Route::apiResource('users', UserController::class);
