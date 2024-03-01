@@ -18,10 +18,16 @@ class LocationsController extends Controller
      */
     public function index(Request $request)
     {
-        $filter = new LocationFilter();
-        $queryItems = $filter->transform($request);
-        $location = Location::where($queryItems);
-        return new LocationCollection($location->paginate()->appends($request->query()));
+        if (!is_null($request->input('q'))) {
+            $query = $request->input('q');
+            $filteredLocation = Location::where('address', 'LIKE', "%{$query}%")->get();
+            return $filteredLocation;
+        } else {
+            $filter = new LocationFilter();
+            $queryItems = $filter->transform($request);
+            $location = Location::where($queryItems);
+            return new LocationCollection($location->paginate()->appends($request->query()));
+        }
     }
 
     /**
@@ -78,7 +84,7 @@ class LocationsController extends Controller
             'images' => $request->images,
             'score' => $request->score,
             'comments' => $request->comments
-        ];    
+        ];
 
         $updateArray = array_filter($requestArray);
 
