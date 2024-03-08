@@ -61,13 +61,17 @@ class UserController extends Controller
      */
     public function update(UpdateLocationsRequest $request, User $user)
     {
-        $user->update($request->all());
+        // $user->update($request->all());
 
-        if($request->email) {
-            DB::table('profiles')->update(['name' => $request->name, 'email' => $request->email]);
-        } else {
-            DB::table('profiles')->update(['name' => $request->name]);
+        if($request->role) {
+            DB::table('users')->update(['role' => $request->role]);
         }
+
+        // if($request->email) {
+        //     DB::table('profiles')->update(['name' => $request->name, 'email' => $request->email]);
+        // } else {
+        //     DB::table('profiles')->update(['name' => $request->name]);
+        // }
 
         return response()->json([
             'message' => 'User updated successfully',
@@ -79,7 +83,8 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
-    {
-        //
+    {   
+        User::where('id', $user->id)->delete();
+        return true;
     }
 }
