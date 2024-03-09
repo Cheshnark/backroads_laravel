@@ -101,7 +101,8 @@ class LocationsController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        Location::where('id', $location->id)->delete();
+        return true;
     }
 
     public function getUserLocations(string $userId)
