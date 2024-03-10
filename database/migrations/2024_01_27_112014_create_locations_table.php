@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('locations', function (Blueprint $table) {
-            $table->uuid('id')->uuid()->primary()->uniqid();
+            $table->uuid('id')->uuid()->primary()->unique();
             $table->timestamps();
             $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
             $table->json('coordinates')->nullable();
