@@ -88,7 +88,7 @@ class LocationsController extends Controller
 
         $updateArray = array_filter($requestArray);
 
-        DB::table('locations')->update($updateArray);
+        Location::where('id', $location->id)->update($updateArray);
 
         return response()->json([
             'message' => 'User updated successfully',
