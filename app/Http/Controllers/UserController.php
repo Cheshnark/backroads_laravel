@@ -64,7 +64,7 @@ class UserController extends Controller
         // $user->update($request->all());
 
         if($request->role) {
-            DB::table('users')->update(['role' => $request->role]);
+            User::where('id', $user->id)->update(['role' => $request->role]);
         }
 
         // if($request->email) {
